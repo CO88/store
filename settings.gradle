@@ -1,0 +1,6 @@
+rootProject.name = 'store'
+include 'api'
+include 'core'
+//include 'admin'
+include 'base'
+

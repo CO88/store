@@ -1,0 +1,85 @@
+buildscript {
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springbootVersion}")
+    }
+}
+
+plugins {
+    id 'idea'
+    id 'java'
+    id 'org.springframework.boot' version "${springbootVersion}"
+    id 'io.spring.dependency-management' version "${springDependencyManagementVersion}"
+}
+
+group = 'com.cobb'
+
+allprojects {
+    version =  "${appVersion}"
+
+    java {
+        sourceCompatibility = "${jdkVersion}"
+    }
+
+    repositories {
+        mavenCentral()
+    }
+}
+
+subprojects {
+    apply plugin: 'idea'
+    apply plugin: 'java'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+
+    dependencies {
+        implementation 'org.springframework.boot:spring-boot-starter-web'
+        implementation "org.springframework.boot:spring-boot-starter-data-jpa"
+
+        compileOnly 'org.projectlombok:lombok'
+
+        annotationProcessor 'org.projectlombok:lombok'
+
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+        testImplementation 'net.datafaker:datafaker:2.1.0'
+    }
+
+    configurations {
+        compileOnly {
+            extendsFrom annotationProcessor
+        }
+    }
+
+    tasks.named('test') {
+        useJUnitPlatform()
+
+    }
+}
+
+bootJar.enabled = false
+
+project(':api') {
+    group = "com.cobb.api"
+    bootJar { enabled = true }
+    jar { enabled= false }
+    dependencies {
+        implementation project(":core")
+        implementation project(":base")
+    }
+}
+
+project(':core') {
+    group = "com.cobb.core"
+    bootJar { enabled = false }
+    jar { enabled = true }
+    dependencies {
+        implementation project(':base')
+    }
+}
+
+project(':base') {
+    group = "com.cobb.base"
+    bootJar { enabled = false }
+    jar { enabled = true }
+    dependencies {
+    }
+}
