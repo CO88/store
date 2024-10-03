@@ -108,7 +108,7 @@ public class ProductControllerIntegrationTest extends AbastractIntegrationTest {
     ProductDto productDtos = generateProductDto("B", null, null);
     performPatch(PRODUCT_API_ENDPOINT + "/17", productDtos).andExpect(status().isOk());
 
-    MvcResult result = performGet(BRAND_API_ENDPOINT + "/B/lowest-price").andExpect(status().isOk()).andReturn();
+    MvcResult result = performGet(BRAND_API_ENDPOINT + "/B/lowest-price-product").andExpect(status().isOk()).andReturn();
     LowestTotalDto response = convertStringToClass(result.getResponse().getContentAsString(StandardCharsets.UTF_8), LowestTotalDto.class);
     ProductDto resultProduct = response.products().stream()
             .filter(productDto -> "상의".equals(productDto.category()))
@@ -147,7 +147,7 @@ public class ProductControllerIntegrationTest extends AbastractIntegrationTest {
   public void successCase_beEmptyDeletedProduct_deleteProduct() throws Exception {
     performDelete(PRODUCT_API_ENDPOINT + "/17").andExpect(status().isOk());
 
-    MvcResult brandLowestResult = performGet(BRAND_API_ENDPOINT + "/C/lowest-price").andExpect(status().isOk()).andReturn();
+    MvcResult brandLowestResult = performGet(BRAND_API_ENDPOINT + "/C/lowest-price-product").andExpect(status().isOk()).andReturn();
     LowestTotalDto brandLowestResponse = convertStringToClass(brandLowestResult.getResponse().getContentAsString(StandardCharsets.UTF_8), LowestTotalDto.class);
     ProductDto brandLowestProduct = brandLowestResponse.products().stream()
             .filter(productDto -> "상의".equals(productDto.category()))

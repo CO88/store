@@ -8,9 +8,9 @@ public class TestFactory {
 
   private static final Faker faker = new Faker();
 
-  public static final String PRODUCT_API_ENDPOINT = "/product";
-  public static final String BRAND_API_ENDPOINT = "/brand";
-  public static final String LOWEST_PRICE_API_ENDPOINT = "/categories/lowest-price";
+  public static final String PRODUCT_API_ENDPOINT = "/products";
+  public static final String BRAND_API_ENDPOINT = "/brands";
+  public static final String LOWEST_PRICE_API_ENDPOINT = "/categories/lowest-price-product";
 
   public ProductDto generateProductDto(String brandName, String categoryName, Integer price) {
     return ProductDto.builder()
