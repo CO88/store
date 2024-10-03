@@ -8,7 +8,13 @@ import lombok.ToString;
 
 @Getter
 @Entity
-@Table(name = "products")
+@Table(
+        name = "products",
+        indexes = {
+                @Index(name = "idx_brand_id", columnList = "brand_id"),
+                @Index(name = "idx_category_id", columnList = "category_id")
+        }
+)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString
 public class Product implements Cloneable {

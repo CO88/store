@@ -41,3 +41,7 @@ create table product_lowest_totals (
    product_id bigint NOT NULL,
    PRIMARY KEY (id)
 );
+
+CREATE INDEX idx_products_brand_id ON products (brand_id);
+
+CREATE INDEX idx_products_category_id ON products (category_id);
