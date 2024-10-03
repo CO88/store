@@ -84,7 +84,7 @@ get localhost:8080/categories/{category-name}/lowest-price
 
 Test run
 ```bash
-
+./gradlew clean test
 ```
 
 Server run

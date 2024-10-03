@@ -1,12 +1,13 @@
 package com.cobb.base.error.exception;
 
 import com.cobb.base.error.enumerate.ErrorType;
+import com.cobb.base.error.exception.constant.ErrorMessage;
 import lombok.Getter;
 
 @Getter
 public class InternalServerErrorException extends CustomException {
   public InternalServerErrorException() {
-    super(ErrorType.INTERNAL_SERVER_ERROR.toString(), ErrorType.INTERNAL_SERVER_ERROR);
+    super(ErrorMessage.SERVER_ERROR, ErrorType.INTERNAL_SERVER_ERROR);
   }
 
   public InternalServerErrorException(String message) {

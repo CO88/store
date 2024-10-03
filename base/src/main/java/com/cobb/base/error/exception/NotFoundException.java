@@ -1,12 +1,13 @@
 package com.cobb.base.error.exception;
 
 import com.cobb.base.error.enumerate.ErrorType;
+import com.cobb.base.error.exception.constant.ErrorMessage;
 import lombok.Getter;
 
 @Getter
 public class NotFoundException extends CustomException {
   public NotFoundException() {
-    super(ErrorType.NOT_FOUND.toString(), ErrorType.NOT_FOUND);
+    super(ErrorMessage.NOT_FOUND, ErrorType.NOT_FOUND);
   }
 
   public NotFoundException(String message) {

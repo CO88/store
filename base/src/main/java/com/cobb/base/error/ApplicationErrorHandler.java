@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 @RequiredArgsConstructor
 @Slf4j
-public class ErrorHandler {
+public class ApplicationErrorHandler {
 
   private final ExceptionConverter exceptionConverter;
 

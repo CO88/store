@@ -1,12 +1,13 @@
 package com.cobb.base.error.exception;
 
 import com.cobb.base.error.enumerate.ErrorType;
+import com.cobb.base.error.exception.constant.ErrorMessage;
 import lombok.Getter;
 
 @Getter
 public class BadRequestException extends CustomException {
   public BadRequestException() {
-    super(ErrorType.BAD_REQUEST.toString(), ErrorType.BAD_REQUEST);
+    super(ErrorMessage.BAD_REQUEST, ErrorType.BAD_REQUEST);
   }
 
   public BadRequestException(String message) {

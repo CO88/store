@@ -1,6 +1,7 @@
 package com.cobb.base.error;
 
 import com.cobb.base.error.exception.*;
+import org.springframework.dao.TransientDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.ErrorResponse;
@@ -11,7 +12,8 @@ public class ExceptionConverter {
     return switch (throwable) {
       case CustomException customException -> customException;
       case ErrorResponse errorResponse -> convertInternal(errorResponse);
-      case null, default -> new InternalServerErrorException(throwable);
+      case TransientDataAccessException e -> new RetryException();
+      default -> new InternalServerErrorException(throwable);
     };
   }
 
